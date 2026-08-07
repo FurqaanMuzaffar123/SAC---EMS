@@ -92,7 +92,7 @@ form{
     justify-self: center;
 }
 
-.field > input{
+.field input{
     background-color: transparent;
     border: none;
     border-bottom: 2px solid rgba(255, 255, 255, 0.276);
@@ -104,7 +104,7 @@ form{
     font-size: 20px;
 }
 
-.field > input:focus{
+.field input:focus{
     border:none;
     outline: none;
     box-shadow: none;
@@ -127,6 +127,24 @@ form{
     margin: 20px;
     font-weight: 800;
     letter-spacing: .25px;
+}
+
+.password-input{
+    position: relative;
+    width: 100%;
+}
+
+.password-input input{
+    width: 100%;
+    padding-right: 45px;
+    box-sizing: border-box;
+}
+
+.password-input img{    
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
 }
 
 @media (max-width:768px) {

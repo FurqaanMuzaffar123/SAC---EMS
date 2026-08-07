@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/activate.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAC - Activate Account</title>
+  </head>
+
+  <body>
+    <div class="login-layout">
+      <section class="branding">
+        <div class="bg-square"></div>
+        <h1 class="brand-heading">SAC · EMS</h1>
+        <p class="full-form">ST. AGNES COLLEGE - ELECTION MANAGEMENT SYSTEM</p>
+      </section>
+
+      <div class="divider"></div>
+      <section class="auth-panel">
+        <h1 class="auth-heading">Activate Account</h1>
+        <form action="/login" method="POST">
+          <div class="field">
+            <label for="register">Register Number</label>
+            <input
+              type="text"
+              name="register"
+              id="register"
+              inputmode="numeric"
+              maxlength="8"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="eg. 24012345"
+              pattern="\d{6,8}$"
+            />
+          </div>
+          <div class="field">
+            <label for="DOB">Date of Birth</label>
+            <input type="date" name="DOB" id="DOB" required />
+          </div>
+          <div class="field">
+            <label for="password">Create Password</label>
+            <div class="password-input">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                required
+                placeholder="eg. ******** just in case"
+              />
+              <img src="/images/eye.png" alt="" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="confirm_password">Confirm Password</label>
+            <div class="password-input">
+              <input
+                type="password"
+                name="confirm_password"
+                id="confirmPassword"
+                placeholder="eg. same as above"
+                required
+              />
+              <img src="/images/eye.png" alt="" />
+            </div>
+          </div>
+          <button type="submit" class="submit-btn">LOGIN</button>
+        </form>
+      </section>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/js/activate.js"></script>
+  </body>
+</html>

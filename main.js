@@ -14,7 +14,7 @@ app.get("/", (req, res)=>{
 })
 
 app.get("/login", (req, res)=>{
-    res.render("login.ejs")
+    res.render("activate.ejs")
 })
 
 app.listen(port,"0.0.0.0", ()=>{
