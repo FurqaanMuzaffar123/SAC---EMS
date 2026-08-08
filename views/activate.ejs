@@ -51,6 +51,7 @@
                 class="password"
                 required
                 placeholder="eg. ********, just in case"
+                minlength="8"
               />
               <img src="/images/eye.png" alt="" class="showPass"/>
             </div>
@@ -64,11 +65,17 @@
                 id="confirmPassword"
                 class="password"
                 placeholder="eg. same as above"
+                minlength="8"
                 required
               />
               <img src="/images/eye.png" alt="" class="showPass"/>
             </div>
           </div>
+          <p class="error">
+            <% if (locals.error_msg) { %>
+             <%= error_msg%>
+            <% } %>
+          </p>
           <button type="submit" class="submit-btn">LOGIN</button>
         </form>
       </section>
