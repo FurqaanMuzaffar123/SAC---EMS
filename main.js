@@ -2,22 +2,24 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 import { configDotenv } from "dotenv";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 
-configDotenv()
+configDotenv();
+
 const app = express();
-const port = 3000;
-const {Pool} = pg
-const db = new Pool({
-    user:process.env.DB_USER,
-    host:process.env.DB_HOST,
-    database:process.env.DB_NAME,
-    port:process.env.DB_PORT,
-    password:process.env.DB_PASSWORD
-})
-const saltRounds = 10
+const port = process.env.PORT || 3000;
 
-db.connect()
+const { Pool } = pg;
+
+const db = new Pool({
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
+    password: process.env.DB_PASSWORD
+});
+
+const saltRounds = 10;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
