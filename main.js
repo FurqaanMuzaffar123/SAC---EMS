@@ -5,6 +5,9 @@ import { configDotenv } from "dotenv";
 import bcrypt from "bcrypt";
 
 configDotenv();
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("DB_URL:", process.env.DB_URL ? "EXISTS" : "MISSING");
+console.log("DB_URL length:", process.env.DB_URL?.length);
 
 const app = express();
 const port = process.env.PORT || 3000;
