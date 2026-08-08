@@ -9,10 +9,10 @@ const app = express();
 const port = 3000;
 const {Pool} = pg
 const db = new Pool({
-    user:"postgres",
-    host:"localhost",
-    database:"SAC - EMS",
-    port:5432,
+    user:process.env.DB_USER,
+    host:process.env.DB_HOST,
+    database:process.env.DB_NAME,
+    port:process.env.DB_PORT,
     password:process.env.DB_PASSWORD
 })
 const saltRounds = 10
