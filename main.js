@@ -11,6 +11,8 @@ const port = process.env.PORT || 3000;
 
 const { Pool } = pg;
 
+console.log(process.env.DB_URL? "exists":"doesnt exist")
+
 const db = new Pool({
     connectionString: process.env.DB_URL
 });
