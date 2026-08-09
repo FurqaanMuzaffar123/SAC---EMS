@@ -59,6 +59,16 @@ app.post("/login", async (req, res)=>{
     } 
     console.log("student exists")
     console.log(studentdob)
+    console.log("checking if already logged in")
+    const student = (await db.query("SELECT * FROM students WHERE register_no=$1", [register]))
+    if (student.rows[0].activated){
+        console.log("already activated. waiting for approval")
+        return res.render("activate.ejs", {
+            error_msg : "Account has already been activated"
+        })
+    }
+    console.log("account not activated")
+    console.log(`account activated: ${student.rows[0].activated}`)
     console.log("confirming date of birth")   
     if (studentdob[0].dob !== DOB){
         console.log("invalid date of birth")
