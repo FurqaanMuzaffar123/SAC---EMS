@@ -147,6 +147,13 @@ form{
     right: 10px;
 }
 
+.error{
+    color: rgb(255, 66, 66);
+    font-family: 'Sora';
+    font-weight: 300;
+    letter-spacing: -.5px;
+}
+
 @media (max-width:768px) {
     .divider{
         display: none;
