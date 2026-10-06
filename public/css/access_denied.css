@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: black;
+    color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+h1{
+    padding: 10px;
+    font-family: "Sora";
+    font-size: clamp(2rem, 5vw, 4rem);
+    max-width: fit-content;
+    text-align: center;
+}
+
+h1.show{
+    background-color: white;
+    color: black;
+    animation: flicker ease .7s;
+}
+
+p{
+    font-family: "Montserrat";
+    font-size: clamp(1rem, 1.5vw, 3rem);
+    letter-spacing: 4px;
+    text-align: center;
+}
+
+.flash{
+    height: 100vh;
+    background-color: white;
+    width: 100vw;
+    display: none;
+    position:absolute
+}
+
+@keyframes flicker {
+    0%, 8%, 12%, 22%, 38%, 100% {
+        opacity: 1;
+    }
+
+    9%, 10%, 23%, 24%, 39% {
+        opacity: 0;
+    }
+
+    11%, 25%, 40% {
+        opacity: .4;
+    }
+}

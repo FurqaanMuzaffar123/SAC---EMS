@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: black;
+    color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+h1{
+    padding: 10px;
+    font-family: "Sora";
+    font-size: clamp(2rem, 5vw, 4rem);
+    max-width: fit-content;
+    text-align: center;
+    background-color: white;
+    color: black;
+}
+
+
+p{
+    font-family: "Montserrat";
+    font-size: clamp(1rem, 1.5vw, 3rem);
+    letter-spacing: 4px;
+    text-align: center;
+}
+

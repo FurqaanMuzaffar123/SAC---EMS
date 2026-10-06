@@ -22,7 +22,7 @@
       <div class="divider"></div>
       <section class="auth-panel">
         <h1 class="auth-heading">Activate Account</h1>
-        <form action="/login" method="POST">
+        <form action="/activate" method="POST">
           <div class="field">
             <label for="register">Register Number</label>
             <input
@@ -39,7 +39,7 @@
           </div>
           <div class="field">
             <label for="DOB">Date of Birth</label>
-            <input type="date" name="DOB" id="DOB" required />
+            <input type="date" name="DOB" id="DOB"/>
           </div>
           <div class="field">
             <label for="password">Create Password</label>
@@ -76,7 +76,10 @@
              <%= error_msg%>
             <% } %>
           </p>
+          <div class="btns">
           <button type="submit" class="submit-btn">LOGIN</button>
+          <a href="/login">Login to your Account</a>
+        </div>
         </form>
       </section>
     </div>

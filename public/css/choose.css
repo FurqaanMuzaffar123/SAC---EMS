@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: black;
+    height: 100vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.heading{
+    font-family: "Sora";
+    font-weight: 400;
+    font-size: 55px;
+    margin: 20px;
+    text-align: center;
+}
+
+.choice{
+    color: white;
+    text-decoration: none;
+    width: 70%;
+    padding: 15px 20px;
+    border:2px solid white;
+    margin: 10px;
+    transition: all 0.2s ease;
+}
+
+.choice-name{
+    font-family: "JetBrains Mono";
+    font-weight: 100;
+    font-size: 30px;
+    transition: all 0.4s ease;
+}
+
+.brief{
+    font-family: "Sora";
+    font-weight: 100;
+    color: rgba(245, 245, 245, 0.724);
+}
+
+.choice:active, .choice:hover{
+    outline:3px solid white;
+    outline-offset: .8px;
+}

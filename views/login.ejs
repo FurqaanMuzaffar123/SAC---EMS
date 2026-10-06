@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAC - Authenticate</title>
+  </head>
+
+  <body>
+    <div class="login-layout">
+      <section class="branding">
+        <div class="bg-square"></div>
+        <h1 class="brand-heading">SAC · EMS</h1>
+        <p class="full-form">ST. AGNES COLLEGE - ELECTION MANAGEMENT SYSTEM</p>
+      </section>
+
+      <div class="divider"></div>
+      <section class="auth-panel">
+        <h1 class="auth-heading">Authenticate</h1>
+        <form action="/login" method="POST">
+          <div class="field">
+            <label for="register">Register Number</label>
+            <input
+              type="text"
+              name="register"
+              id="register"
+              inputmode="numeric"
+              maxlength="8"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="eg. 24012345"
+              pattern="\d{6,8}$"
+            />
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="password-input">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="password"
+                required
+                placeholder="eg. ********"
+                minlength="8"
+              />
+              <img src="/images/eye.png" alt="" class="showPass"/>
+            </div>
+          </div>
+          <p class="error">
+            <% if (locals.error_msg) { %>
+             <%= error_msg%>
+            <% } %>
+          </p>
+          <div class="btns">
+          <button type="submit" class="submit-btn">LOGIN</button>
+          <a href="/activate">Activate Account</a>
+        </div>
+        </form>
+      </section>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/js/activate.js"></script>
+  </body>
+</html>

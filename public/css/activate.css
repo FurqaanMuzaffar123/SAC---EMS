@@ -154,6 +154,20 @@ form{
     letter-spacing: -.5px;
 }
 
+.btns{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+a{
+    color: white;
+    font-family: "Sora";
+}
+
+
 @media (max-width:768px) {
     .divider{
         display: none;
