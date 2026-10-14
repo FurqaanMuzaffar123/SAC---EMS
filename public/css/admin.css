@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap');
+
+:root{
+    --bg: #050505;
+    --fg: #f2f2f2;
+    --dim: #6b6b6b;
+    --accent: #00ff9c;
+    --danger: #ff3b3b;
+}
+
+*{ margin: 0; padding: 0; box-sizing: border-box; }
+
+body{
+    background-color: var(--bg);
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    color: var(--fg);
+    font-family: "Sora", sans-serif;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ---------- atmosphere ---------- */
+.scanlines, .vignette{
+    position: fixed; inset: 0; pointer-events: none; z-index: 50;
+}
+.scanlines{
+    background: repeating-linear-gradient(
+        to bottom, rgba(0,0,0,0) 0, rgba(0,0,0,0) 2px, rgba(0,0,0,0.25) 3px);
+    opacity: .5;
+}
+.vignette{
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.85) 100%);
+}
+
+/* ---------- welcome ---------- */
+.welcome-heading{
+    font-family: "Oxanium", sans-serif;
+    font-size: clamp(1rem, 5vw, 3rem);
+    text-align: center;
+    color: black;
+    background-color: white;
+    font-weight: 800;
+    letter-spacing: .08em;
+    padding: 10px 30px;
+    min-height: 1.4em;
+}
+.welcome-heading.glitch{ animation: glitch .25s steps(2) infinite; }
+
+@keyframes glitch{
+    0%   { transform: translate(0); box-shadow: 0 0 0 transparent; }
+    25%  { transform: translate(-4px, 2px); box-shadow: 4px 0 var(--danger), -4px 0 var(--accent); }
+    50%  { transform: translate(3px, -2px); box-shadow: -4px 0 var(--danger), 4px 0 var(--accent); }
+    75%  { transform: translate(-2px, 1px); }
+    100% { transform: translate(0); }
+}
+
+/* ---------- confirmation / login ---------- */
+.confirmation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    height: 100vh;
+    padding: 0 20px;
+}
+
+.boot-log{
+    font-family: "Share Tech Mono", monospace;
+    font-size: .8rem;
+    color: var(--dim);
+    line-height: 1.7;
+    text-align: left;
+    min-height: 5.1em;
+    width: min(420px, 90vw);
+}
+.boot-log .ok{ color: var(--accent); }
+
+.confirmation-heading{
+    font-family: "Oxanium", sans-serif;
+    font-weight: 600;
+    letter-spacing: .12em;
+    font-size: clamp(1rem, 3.2vw, 2rem);
+    text-align: center;
+    min-height: 1.3em;
+}
+
+.input-wrap{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: min(420px, 90vw);
+    padding: 12px 4px;
+    border-bottom: 1px solid var(--dim);
+    font-family: "Share Tech Mono", monospace;
+    font-size: 1.2rem;
+    transition: border-color .2s, box-shadow .2s;
+}
+.input-wrap:focus-within{
+    border-color: var(--accent);
+    box-shadow: 0 8px 20px -12px var(--accent);
+}
+.prompt{ color: var(--accent); }
+
+.password-input{
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--fg);
+    font: inherit;
+    letter-spacing: .3em;
+    caret-color: transparent;
+}
+.input-wrap:focus-within .cursor{ display: inline; }
+.input-wrap .cursor{ display: none; color: var(--accent); }
+
+.status{
+    font-family: "Share Tech Mono", monospace;
+    font-size: .9rem;
+    letter-spacing: .15em;
+    min-height: 1.2em;
+    color: var(--dim);
+}
+.status.error{ color: var(--danger); }
+.status.success{ color: var(--accent); }
+
+.input-wrap.shake{ animation: shake .4s; border-color: var(--danger); }
+@keyframes shake{
+    0%,100%{ transform: translateX(0); }
+    20%{ transform: translateX(-10px); }
+    40%{ transform: translateX(8px); }
+    60%{ transform: translateX(-6px); }
+    80%{ transform: translateX(4px); }
+}
+
+/* ---------- dashboard stub ---------- */
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    height: 100vh;
+}
+
+.glitch-strip{
+    background: transparent;
+    mix-blend-mode: screen;
+}
+
+.flash{
+    position: fixed; inset: 0; z-index: 100;
+    background-color: white;
+}
+
+.cursor{ animation: blink 1s infinite; }
+@keyframes blink{
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .welcome-heading.glitch, .input-wrap.shake, .cursor{ animation: none; }
+}

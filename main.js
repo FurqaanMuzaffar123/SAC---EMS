@@ -7,6 +7,7 @@ import bcrypt from "bcrypt";
 import session from "express-session";
 import LocalStrategy from "passport-local";
 import passport from "passport";
+import connectPgSimple from "connect-pg-simple"
 
 //=======CONFIGURATION=======//
 configDotenv();
@@ -90,16 +91,33 @@ passport.use(
 passport.serializeUser((student, cb)=>{
   cb(null, student.register_no)
 })
-passport.deserializeUser(async (register, cb)=>{
-  const result = await db.query(`
-    SELECT * FROM students
-    WHERE register_no = $1
-  `, [register])
 
-  cb(null, result.rows[0])
-})
+passport.deserializeUser(async (register, cb) => {
+  try {
+    const result = await db.query(
+      "SELECT * FROM students WHERE register_no = $1",
+      [register]
+    );
+
+    if (result.rows.length === 0) {
+      return cb(null, false);
+    }
+
+    return cb(null, result.rows[0]);
+  } catch (err) {
+    return cb(err);
+  }
+});
+
+const PgSession = connectPgSimple(session);
+
 app.use(
   session({
+    store: new PgSession({
+      pool: db,
+      tableName: "user_sessions",
+      createTableIfMissing: true,
+    }), 
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
@@ -121,6 +139,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/diversion", (req, res)=>{
+  console.log(req.isAuthenticated())
+  console.log(req.user?.is_admin)
   if (req.isAuthenticated() && req.user.is_admin) {
     res.redirect("/architect-ems-panel")
   } else if (req.isAuthenticated()) {
@@ -146,13 +166,30 @@ app.get("/choose", (req, res) => {
   res.render("choose.ejs");
 });
 
-app.get("/architect-ems-panel", (req, res)=>{
-  if (!req.isAuthenticated() || !req.user.is_admin){
-    return res.redirect("/html/access_denied.html")
+// app.get("/architect-ems-panel", (req, res)=>{
+//   if (!req.isAuthenticated() || !req.user.is_admin){
+//     return res.redirect("/html/access_denied.html")
+//   }
+
+//   res.render("admin.ejs")
+// })
+
+app.get("/architect-ems-panel", (req, res) => {
+  console.log("PANEL REQUEST:", {
+    authenticated: req.isAuthenticated(),
+    register: req.user?.register_no,
+    is_admin: req.user?.is_admin
+  });
+
+  if (!req.isAuthenticated() || !req.user?.is_admin) {
+    console.log("ACCESS DENIED");
+    return res.redirect("/html/access_denied.html");
   }
 
-  res.render("admin.ejs")
-})
+  console.log("ACCESS GRANTED");
+  return res.render("admin.ejs");
+});
+
 
 // Post Routes:
 app.post("/activate", async (req, res, next) => {
@@ -184,7 +221,7 @@ app.post("/activate", async (req, res, next) => {
 
   console.log("Checking for student");
 
-  if (studentdob.length === 0) {
+  if (studentdob.length  === 0) {
 
     console.log("student doesnt exist");
 
@@ -242,7 +279,16 @@ app.post("/activate", async (req, res, next) => {
 
   console.log("updated activation");
 
-  
+  const updatedStudent = (await db.query("SELECT * FROM students WHERE register_no=$1", [register])).rows[0]
+  req.login(updatedStudent,(err)=>{
+      if (err) return next(err)
+
+      if (updatedStudent.is_admin){
+        return res.redirect("/architect-ems-panel")
+      }
+
+      return  res.redirect("/student-dashboard")
+  })
 });
 
 app.post("/login",(req, res, next)=>{
@@ -263,16 +309,16 @@ app.post("/login",(req, res, next)=>{
 
       if (err) return next(err)
 
-      if (student.register_no = "88888888" && student.is_admin){
-        return res.redirect("architect-ems")
+      if (student.is_admin){
+        return res.redirect("/architect-ems-panel")
       }
 
-      res.redirect("/dashboard")
+      res.redirect("/student-dashboard")
 
     })
 
   })(req, res, next)
-})
+})  
 
 // Server Listner:
 app.listen(port, "0.0.0.0", () => {

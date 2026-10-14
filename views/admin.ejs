@@ -4,13 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAC - The Architect's Panel</title>
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
-    <div class="confirmation">
-        <h1 class="confirmation-heading">
-            ENTER THE ADMIN PASSWORD
-        </h1>   
-        <input type="text">
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+
+    <div class="welcome">
+        <h1 class="welcome-heading">WELCOME TO THE ADMIN PANEL</h1>
     </div>
+
+    <div class="confirmation">
+        <div class="boot-log"></div>
+        <h1 class="confirmation-heading">ENTER THE ADMIN PASSWORD TO PROCEED</h1>
+        <div class="input-wrap">
+            <span class="prompt">&gt;</span>
+            <input type="password" class="password-input" autocomplete="off" spellcheck="false" aria-label="Admin password">
+            <span class="cursor">_</span>
+        </div>
+        <p class="status"></p>
+    </div>
+
+    <div class="container">
+        hello
+    </div>
+
+    <div class="flash"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/js/admin.js"></script>
 </body>
 </html>
